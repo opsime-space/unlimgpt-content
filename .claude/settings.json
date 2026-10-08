@@ -1,0 +1,48 @@
+{
+  "claudeMdExcludes": [
+    "**/opsime-space/AGENTS.md",
+    "**/opsime-space/CLAUDE.md"
+  ],
+  "env": {
+    "CLAUDE_CODE_DISABLE_FAST_MODE": "1",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "4",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus"
+  },
+  "fastMode": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering barrier --provider claude --fail-closed; elif [ \"${CLAUDE_CODE_REMOTE:-}\" = \"true\" ]; then printf '%s\\n' '{}'; else echo \"Agent Platform steering runtime is unavailable; mutation blocked\" >&2; exit 2; fi",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash|mcp__.*"
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering entry --provider claude; elif [ \"${CLAUDE_CODE_REMOTE:-}\" = \"true\" ]; then printf '%s\\n' '{\"hookSpecificOutput\":{\"additionalContext\":\"Облачная сессия Claude Code: локальных agent-platform, bd, gc и Dolt Beads здесь нет (DEC-057), поэтому steering не захватывается. bd prime, claim, gc.mayor и gc sling невыполнимы — не имитируйте их. Skills Packs (gc.mayor, superpowers.*, gstack.*, bmad.*, compound-engineering.*) материализует только локальный Gas City, в облачном клоне их нет: методологию AGENTS.md соблюдайте сами. Работайте только по задаче промпта; результат — ветка и PR. Указания владельца запишет в owning Bead локальная сессия при приёмке.\",\"hookEventName\":\"SessionStart\"},\"systemMessage\":\"Steering не захвачен: облачная сессия Claude Code без Agent Platform и Beads. Указание выполняется, в owning Bead его запишет локальная сессия при приёмке.\"}'; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering hook --provider claude --event UserPromptSubmit --fail-closed; elif [ \"${CLAUDE_CODE_REMOTE:-}\" = \"true\" ]; then printf '%s\\n' '{\"hookSpecificOutput\":{\"additionalContext\":\"Steering не захвачен: облачная сессия Claude Code без Agent Platform и Beads. Указание выполняется, в owning Bead его запишет локальная сессия при приёмке.\",\"hookEventName\":\"UserPromptSubmit\"},\"systemMessage\":\"Steering не захвачен: облачная сессия Claude Code без Agent Platform и Beads. Указание выполняется, в owning Bead его запишет локальная сессия при приёмке.\"}'; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+            "timeout": 120,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ]
+  }
+}

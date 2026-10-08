@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering barrier --provider codex --fail-closed; else echo \"Agent Platform steering runtime is unavailable; mutation blocked\" >&2; exit 2; fi",
+            "statusMessage": "Checking open owner steering",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash|mcp__.*"
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering entry --provider codex; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+            "statusMessage": "Entering Agent Platform",
+            "type": "command"
+          }
+        ],
+        "matcher": "startup|resume|clear"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering hook --provider codex --event UserPromptSubmit --fail-closed; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+            "statusMessage": "Recording owner steering in Beads",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  }
+}

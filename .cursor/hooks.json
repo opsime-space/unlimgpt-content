@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering hook --provider cursor --event beforeSubmitPrompt --fail-closed; elif [ -n \"${CURSOR_AGENT_SOCKET:-}\" ] || [ -S /run/cursor/api.sock ]; then printf '%s\\n' '{\"continue\":true,\"user_message\":\"Steering не захвачен: облачная сессия Cursor без Agent Platform и Beads. Указание выполняется, в owning Bead его запишет локальная сессия при приёмке.\"}'; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+        "failClosed": true
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering barrier --provider cursor --fail-closed; elif [ -n \"${CURSOR_AGENT_SOCKET:-}\" ] || [ -S /run/cursor/api.sock ]; then printf '%s\\n' '{\"permission\":\"allow\"}'; else echo \"Agent Platform steering runtime is unavailable; mutation blocked\" >&2; exit 2; fi",
+        "failClosed": true,
+        "matcher": "Shell|MCP:.*"
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": "export PATH=\"$HOME/.local/bin:$PATH\"; if command -v agent-platform >/dev/null 2>&1; then agent-platform steering entry --provider cursor; elif [ -n \"${CURSOR_AGENT_SOCKET:-}\" ] || [ -S /run/cursor/api.sock ]; then printf '%s\\n' '{\"additional_context\":\"Облачная сессия Cursor: локальных agent-platform, bd, gc и Dolt Beads здесь нет (DEC-057), поэтому steering не захватывается. bd prime, claim, gc.mayor и gc sling невыполнимы — не имитируйте их. Skills Packs (gc.mayor, superpowers.*, gstack.*, bmad.*, compound-engineering.*) материализует только локальный Gas City, в облачном клоне их нет: методологию AGENTS.md соблюдайте сами. Работайте только по задаче промпта; результат — ветка и PR. Указания владельца запишет в owning Bead локальная сессия при приёмке.\",\"continue\":true}'; else echo \"Agent Platform steering runtime is unavailable; prompt/session blocked\" >&2; exit 2; fi",
+        "failClosed": true
+      }
+    ]
+  },
+  "version": 1
+}

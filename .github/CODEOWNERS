@@ -1,0 +1,12 @@
+# Проекция Agent Platform; authority находится в fleet/github-governance.yaml.
+/.agent-platform.yml @opsime-space/city-gpt-maintainers
+/.github/** @opsime-space/city-gpt-maintainers
+/AGENTS.md @opsime-space/city-gpt-maintainers
+/SPEC.md @opsime-space/city-gpt-maintainers
+/bun.lock @opsime-space/city-gpt-maintainers
+/ci/verify.sh @opsime-space/city-gpt-maintainers
+/content/** @opsime-space/city-gpt-maintainers
+/docs/** @opsime-space/city-gpt-maintainers
+/package.json @opsime-space/city-gpt-maintainers
+/schemas/** @opsime-space/city-gpt-maintainers
+/scripts/** @opsime-space/city-gpt-maintainers
