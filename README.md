@@ -15,8 +15,8 @@ Web получает **полный SHA коммита** этого репози
 BuildKit named context и записывает SHA в подписанное provenance. Сам merge
 контента не переключает production: требуется обычный просмотренный web release.
 
-`content/` содержит файлы Nuxt Content. `schemas/` — генерируемые JSON Schema
-из единого typed-контракта `apps/web/content.schema.ts` продукта; вручную их не
+`content/` содержит файлы Nuxt Content. `schemas/` — генерируемый снимок схем Zod
+из единого typed-контракта `apps/web/content.schema.ts` продукта; вручную его не
 редактируют. Страницы с `generated: true` обновляют генератором продукта через
 `UNLIMGPT_CONTENT_ROOT=<checkout>/content bun run docs:developer:generate`.
 

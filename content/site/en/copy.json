@@ -1,0 +1,135 @@
+{
+  "marketing": {
+    "navModels": "Models",
+    "navApi": "API",
+    "earlyAccess": "Early access",
+    "badge": "Official OpenAI and Anthropic models",
+    "title": "GPT & Claude that don't refuse. Up to 10× cheaper than official prices.",
+    "description": "Jailbreak steps in when GPT or Claude refuses. Discounts grow with the top-up — no subscription needed.",
+    "composerPlaceholder": "Ask anything",
+    "composerSubmit": "Continue in UnlimGPT",
+    "composerAfterLogin": "After sign-in",
+    "composerHint": "UnlimGPT can make mistakes. Check important info.",
+    "examplesLabel": "Example prompts",
+    "examples": [
+      "Tear apart my business plan, no sugarcoating",
+      "Write a Python script that parses server logs",
+      "Compare GPT and Claude for my use case",
+      "Explain the risks in this contract plainly"
+    ],
+    "pillarsTitle": "Power without the trade-off",
+    "pillarsDescription": "Straight answers and fair pricing in one product.",
+    "directTitle": "Answers, not refusals",
+    "directBody": "Jailbreak answers what you actually asked: when GPT or Claude hits a restriction, the request carries on — a subscription capability, not a different model.",
+    "valueTitle": "Better value on credits",
+    "valueBody": "Every model spends credits at a clear rate. Top-ups run up to 90% below official prices, and purchased credits never expire.",
+    "accessTitle": "Chat and API, one account",
+    "accessBody": "Work in the browser or plug your own apps into an API compatible with OpenAI and Anthropic.",
+    "modelsTitle": "Official OpenAI and Anthropic models",
+    "modelsDescription": "The catalog tracks which models are available — the same versions the official subscriptions run. The rate shows how many credits a million tokens costs.",
+    "modelsColumnModel": "Model",
+    "modelsColumnRate": "Credits per 1M tokens · request / answer",
+    "modelsJailbreak": "Jailbreak",
+    "modelsWebSearch": "Web search",
+    "modelsEmpty": "The catalog opens with early access.",
+    "apiTitle": "Change the base URL and your code just works",
+    "apiDescription": "The same account you use in chat. Streaming, tools and structured output wherever the model supports them.",
+    "apiCta": "Get an API key",
+    "apiCopy": "Copy example",
+    "apiCopied": "Example copied",
+    "finalTitle": "Ask your first question",
+    "finalDescription": "Your draft is saved — pick it up right after you sign up.",
+    "newChat": "New chat",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "copyright": "© 2026 UnlimGPT"
+  },
+  "faq": {
+    "title": "Questions, answered",
+    "items": [
+      {
+        "question": "How do I get access?",
+        "answer": "Sign up and your early access request is created automatically. We open access in waves, and credits appear in the same account."
+      },
+      {
+        "question": "What are credits and model rates?",
+        "answer": "Credits are one balance for every model. A model's rate tells you how many credits it uses per million input and output tokens, so you know the cost of a request up front. A 90% top-up discount means the same dollar buys ten times more credits. 100 credits equal one dollar at the official list price, so a model rate mirrors its official price, and the discount comes from your VIP level — your top-ups over the last 30 days: from VIP 1 (2×) to VIP 9 (10×)."
+      },
+      {
+        "question": "How is Jailbreak different?",
+        "answer": "Jailbreak answers without needless refusals and comes with a subscription: if GPT or Claude limits an answer, the request continues with fewer restrictions while your chosen model stays the same."
+      },
+      {
+        "question": "What can purchased credits be spent on?",
+        "answer": "Purchased credits never expire and are spent only on OpenAI and Anthropic models. Jailbreak uses your monthly subscription credits."
+      },
+      {
+        "question": "Can I connect my own code?",
+        "answer": "Yes. Create a key in your account and change the base URL in the OpenAI or Anthropic SDK — the rest of your code stays the same."
+      },
+      {
+        "question": "Who can see my chats?",
+        "answer": "Your chat history is available only in your account. API history keeps the time, endpoint and status of each request — never its text."
+      },
+      {
+        "question": "How do I pay?",
+        "answer": "Card and crypto payments are coming later. For now access opens in waves, and we top up early access members manually."
+      }
+    ]
+  },
+  "pricing": {
+    "badge": "Pricing",
+    "heading": "Monthly credits or top-ups — pay the way you work",
+    "description": "A subscription adds credits every month and unlocks Jailbreak. Top-ups work without one, for OpenAI and Anthropic models.",
+    "perMonth": "/ mo",
+    "customVolume": "Volume and limits by agreement",
+    "official": "OpenAI and Anthropic models",
+    "limitsRefresh": "Limits refresh every {hours} hours and every {days} days",
+    "jailbreak": "Jailbreak: GPT, Claude",
+    "jailbreakPrevious": "Jailbreak: GPT, Claude (previous generations)",
+    "webSearch": "Web search",
+    "topUpDiscount": "Top-ups {percent}% cheaper",
+    "limits": "Up to {n} request at once | Up to {n} requests at once",
+    "recommended": "Recommended",
+    "volume": "Volume",
+    "cta": "Early access",
+    "ctaCustom": "Talk to us",
+    "byContract": "By agreement",
+    "featuresLabel": "What {title} includes",
+    "plans": {
+      "bachelor": { "name": "Bachelor", "description": "For everyday work in chat and over the API." },
+      "master": { "name": "Master", "description": "Five or twenty times the monthly credits, with the top-up discount from the first dollar." },
+      "professor": { "name": "Professor", "description": "Custom volume, limits and terms for your team." }
+    },
+    "topUpDescription": "Your discount follows your VIP level — your top-ups over the last 30 days: 2× from the first $10, up to 10× from $1000. Subscribers get the better of their level and their plan discount. Reseller volumes get custom terms.",
+    "empty": "Prices appear when access opens.",
+    "earlyAccessNote": "Online payment is coming later. For now access opens in waves: sign up and credits will appear in your account.",
+    "calcTitle": "How much do you spend on AI a month?",
+    "calcDescription": "The more you top up in 30 days, the higher your VIP level and the cheaper every token.",
+    "calcAmount": "Monthly spend",
+    "calcPerMonth": "a month",
+    "calcMarks": "How many times cheaper than official prices",
+    "calcMarkMultiplier": "×{multiplier}",
+    "calcMarkLabel": "From {amount} a month — VIP {level}, {multiplier}× cheaper than official prices",
+    "calcSliderValue": "{amount} a month, VIP {level}, {multiplier}× cheaper",
+    "calcStatEquivalent": "What these tokens cost at OpenAI and Anthropic list prices",
+    "calcStatEquivalentValue": "≈ {amount}",
+    "calcStatSavings": "Cheaper than official prices",
+    "calcStatSavingsValue": "{multiplier}×",
+    "calcVip": "VIP {level}",
+    "calcVolumeLine": "~{tokens}M {model} tokens",
+    "calcCreditsLine": "{credits} credit to your balance, never expires | {credits} credits to your balance, never expire",
+    "calcNextTier": "{amount} more a month — VIP {level}, {multiplier}× cheaper and {extra} more at list prices",
+    "calcTopLevel": "Top level — VIP {level}",
+    "calcCondition": "Your VIP level is the sum of your top-ups over the last 30 days.",
+    "calcColumnModel": "Model",
+    "calcColumnOfficial": "Official per 1M",
+    "calcColumnOurs": "Our price",
+    "calcColumnVolume": "Covers",
+    "calcDiscount": "−{percent}%",
+    "calcDiscountLabel": "{percent}% off the official price",
+    "calcTokens": "~{tokens}M tokens",
+    "calcNote": "Official prices are OpenAI and Anthropic list prices per 1M input and output tokens. Credits work across all models and never expire; Jailbreak runs on monthly subscription credits."
+  }
+}

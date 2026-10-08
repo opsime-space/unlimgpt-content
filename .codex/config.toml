@@ -1,0 +1,10 @@
+# [features] and [agents] are rendered from fleet/providers.yaml
+# model_policy by `agent-platform profile render`; edit the policy, not them.
+[features]
+hooks = true
+fast_mode = false
+
+[agents]
+default_subagent_model = "gpt-6-sol"
+default_subagent_reasoning_effort = "medium"
+max_concurrent_threads_per_session = 4

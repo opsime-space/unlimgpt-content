@@ -1,0 +1,20 @@
+# Проекция Agent Platform; authority находится в fleet/topology.yaml.
+organization: opsime-space
+repository: unlimgpt-content
+city: gpt-city
+repository_role: content-rig
+profile_release: agent-platform-profile-v4.0.0
+risk_tier: standard
+delivery_profile: content
+data_class: content
+agent_managed: true
+runtime_scope: native-beads
+work_projection: github-issues-projects-v2
+work_sync: bd-github-explicit-scope
+lifecycle_policy: outcome-first-v2
+phase_source: beads-parent:metadata.lifecycle_phase
+safety_guard: always-blocking
+quality_policy: phase-aware
+implementation_unit: gas-city-formula
+isolation: formula-defined
+organization_overlay: durable-steering-only
