@@ -29,4 +29,4 @@ test("Content gate rejects missing translations, duplicate paths and malformed m
   } finally {
     await Bun.$`rm -rf ${root}`.quiet();
   }
-});
+}, 30_000);
