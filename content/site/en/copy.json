@@ -2,7 +2,7 @@
   "marketing": {
     "navModels": "Models",
     "navApi": "API",
-    "earlyAccess": "Early access",
+    "earlyAccess": "Create account",
     "badge": "Official OpenAI and Anthropic models",
     "title": "GPT & Claude that don't refuse. Up to 10× cheaper than official prices.",
     "description": "Jailbreak steps in when GPT or Claude refuses. Discounts grow with the top-up — no subscription needed.",
@@ -31,7 +31,7 @@
     "modelsColumnRate": "Credits per 1M tokens · request / answer",
     "modelsJailbreak": "Jailbreak",
     "modelsWebSearch": "Web search",
-    "modelsEmpty": "The catalog opens with early access.",
+    "modelsEmpty": "The model catalog could not be loaded. Try again later.",
     "apiTitle": "Change the base URL and your code just works",
     "apiDescription": "The same account you use in chat. Streaming, tools and structured output wherever the model supports them.",
     "apiCta": "Get an API key",
@@ -50,7 +50,7 @@
     "items": [
       {
         "question": "How do I get access?",
-        "answer": "Sign up and your early access request is created automatically. We open access in waves, and credits appear in the same account."
+        "answer": "Registration is open. Create an account, then email hello{'@'}unlimgpt.com to have credits added manually. Model requests are available after credits are added."
       },
       {
         "question": "What are credits and model rates?",
@@ -74,7 +74,7 @@
       },
       {
         "question": "How do I pay?",
-        "answer": "Card and crypto payments are coming later. For now access opens in waves, and we top up early access members manually."
+        "answer": "Online payment is not connected yet. Credits are added manually: email hello{'@'}unlimgpt.com."
       }
     ]
   },
@@ -93,7 +93,7 @@
     "limits": "Up to {n} request at once | Up to {n} requests at once",
     "recommended": "Recommended",
     "volume": "Volume",
-    "cta": "Early access",
+    "cta": "Create account",
     "ctaCustom": "Talk to us",
     "byContract": "By agreement",
     "featuresLabel": "What {title} includes",
@@ -103,8 +103,8 @@
       "professor": { "name": "Professor", "description": "Custom volume, limits and terms for your team." }
     },
     "topUpDescription": "Your discount follows your VIP level — your top-ups over the last 30 days: 2× from the first $10, up to 10× from $1000. Subscribers get the better of their level and their plan discount. Reseller volumes get custom terms.",
-    "empty": "Prices appear when access opens.",
-    "earlyAccessNote": "Online payment is coming later. For now access opens in waves: sign up and credits will appear in your account.",
+    "empty": "Plans are currently unavailable. Try again later.",
+    "earlyAccessNote": "Registration is open. Credits are currently added manually — email hello{'@'}unlimgpt.com after signing up. Online payment is not connected yet.",
     "calcTitle": "How much do you spend on AI a month?",
     "calcDescription": "The more you top up in 30 days, the higher your VIP level and the cheaper every token.",
     "calcAmount": "Monthly spend",
