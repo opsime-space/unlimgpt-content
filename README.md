@@ -1,7 +1,8 @@
 # UnlimGPT Content
 
 Публичный редакционный контент UnlimGPT на русском и английском языках:
-документация разработчика, лендинг, FAQ, представление тарифов и юридические страницы.
+документация разработчика, лендинг, FAQ, представление тарифов, юридические страницы,
+публичные сообщения интерфейса, иконки, OG-изображения и фирменные исходники.
 
 Код приложения и канонические runtime-модели, ставки, доступность, права доступа,
 балансы и аккаунты остаются в продукте UnlimGPT и PostgreSQL/GraphQL.
@@ -15,7 +16,10 @@ Web получает **полный SHA коммита** этого репози
 BuildKit named context и записывает SHA в подписанное provenance. Сам merge
 контента не переключает production: требуется обычный просмотренный web release.
 
-`content/` содержит файлы Nuxt Content. `schemas/` — генерируемый снимок схем Zod
+`content/` содержит страницы Nuxt Content, `site/{en,ru}/copy.json` для Nuxt i18n,
+`site/{en,ru}/developer.json` для generated developer guides и `public/**` для Nitro.
+`design/brand/**` содержит исходники публичных assets.
+`schemas/` — генерируемый снимок схем Zod
 из единого typed-контракта `apps/web/content.schema.ts` продукта; вручную его не
 редактируют. Страницы с `generated: true` обновляют генератором продукта через
 `UNLIMGPT_CONTENT_ROOT=<checkout>/content bun run docs:developer:generate`.
