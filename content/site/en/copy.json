@@ -407,9 +407,9 @@
   },
   "launchNotice": {
     "badge": "New model",
-    "title": "GPT-6.1 Sol is here",
-    "intro": "Meet GPT-6.1 Sol in UnlimGPT.",
-    "detail": "Select the model in a new chat and start a conversation.",
+    "title": "Gemini 4 Argon is here",
+    "intro": "Meet Google's new model in UnlimGPT.",
+    "detail": "Reasoning, coding, and file inputs. Jailbreak is available on eligible plans.",
     "action": "Try it in chat",
     "later": "Maybe later"
   },
