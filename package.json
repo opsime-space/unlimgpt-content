@@ -3,13 +3,26 @@
   "private": true,
   "type": "module",
   "packageManager": "bun@1.4.2",
-  "engines": { "bun": "1.4.2" },
-  "scripts": { "verify": "bun run scripts/verify-content.ts" },
+  "engines": {
+    "bun": "1.4.2"
+  },
+  "overrides": {
+    "@nuxt/content>zod": "4.6.7",
+    "deepmerge": "github:TehShrike/deepmerge#c5ad573121574db1c625b0aabcc6114ed7df6c5a",
+    "glob": "14.0.2",
+    "minimatch": "11.0.1"
+  },
+  "scripts": {
+    "verify": "bun run scripts/verify-content.ts"
+  },
   "devDependencies": {
     "@nuxtjs/mdc": "0.23.1",
     "@nuxt/content": "3.16.0",
     "@nuxtjs/seo": "5.3.14",
-    "zod": "4.6.4",
+    "zod": "4.6.7",
     "yaml": "2.9.1"
+  },
+  "patchedDependencies": {
+    "deepmerge@github:TehShrike/deepmerge#c5ad573": "patches/deepmerge@github%3ATehShrike%2Fdeepmerge#c5ad573.patch"
   }
 }

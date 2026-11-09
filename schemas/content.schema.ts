@@ -1,5 +1,4 @@
 // Сгенерировано из apps/web/content.schema.ts продукта; вручную не редактировать.
-import { property } from "@nuxt/content";
 import {
   defineOgImageSchema,
   defineRobotsSchema,
@@ -17,41 +16,71 @@ const nuxtSeoFields = {
 
 const documentationSchema = z.object({
   ...nuxtSeoFields,
-  title: property(z.string().min(1).max(120)).editor({
-    label: "Заголовок",
-    description: "Короткий заголовок страницы в навигации и поиске.",
-  }),
-  description: property(z.string().min(1).max(240)).editor({
-    input: "textarea",
-    label: "Описание",
-    description: "Самодостаточное описание для поиска и SEO.",
-  }),
-  category: property(
-    z.enum(["overview", "getting-started", "clients", "security", "troubleshooting", "reference"]),
-  ).editor({ label: "Раздел" }),
-  order: property(z.number().int().min(0).max(10_000)).editor({ label: "Порядок" }),
-  audience: property(z.enum(["developer", "administrator"]).default("developer")).editor({ label: "Аудитория" }),
-  generated: property(z.boolean().default(false)).editor({
-    label: "Сгенерировано",
-    description: "Generated-страницы изменяются только через typed registry.",
-  }),
-  landing: property(
-    z
-      .object({
-        heading: z.string().min(1),
-        actions: z
-          .array(
-            z.object({
-              title: z.string().min(1),
-              description: z.string().min(1),
-              outcome: z.string().min(1),
-              to: z.string().startsWith("/"),
-            }),
-          )
-          .length(3),
-      })
-      .optional(),
-  ).editor({ label: "Стартовый экран" }),
+  title: z
+    .string()
+    .min(1)
+    .max(120)
+    .meta({
+      $content: {
+        editor: {
+          label: "Заголовок",
+          description: "Короткий заголовок страницы в навигации и поиске.",
+        },
+      },
+    }),
+  description: z
+    .string()
+    .min(1)
+    .max(240)
+    .meta({
+      $content: {
+        editor: {
+          input: "textarea",
+          label: "Описание",
+          description: "Самодостаточное описание для поиска и SEO.",
+        },
+      },
+    }),
+  category: z
+    .enum(["overview", "getting-started", "clients", "security", "troubleshooting", "reference"])
+    .meta({ $content: { editor: { label: "Раздел" } } }),
+  order: z
+    .number()
+    .int()
+    .min(0)
+    .max(10_000)
+    .meta({ $content: { editor: { label: "Порядок" } } }),
+  audience: z
+    .enum(["developer", "administrator"])
+    .default("developer")
+    .meta({ $content: { editor: { label: "Аудитория" } } }),
+  generated: z
+    .boolean()
+    .default(false)
+    .meta({
+      $content: {
+        editor: {
+          label: "Сгенерировано",
+          description: "Generated-страницы изменяются только через typed registry.",
+        },
+      },
+    }),
+  landing: z
+    .object({
+      heading: z.string().min(1),
+      actions: z
+        .array(
+          z.object({
+            title: z.string().min(1),
+            description: z.string().min(1),
+            outcome: z.string().min(1),
+            to: z.string().startsWith("/"),
+          }),
+        )
+        .length(3),
+    })
+    .optional()
+    .meta({ $content: { editor: { label: "Стартовый экран" } } }),
   rawbody: z.string(),
 });
 
@@ -59,11 +88,19 @@ const publicPageSchema = z.object({
   ...nuxtSeoFields,
   title: z.string().min(1).max(120),
   description: z.string().min(1).max(240),
-  category: property(z.enum(["landing", "pricing", "legal"])).editor({ label: "Тип страницы" }),
-  socialImageAlt: property(z.string().max(180).optional()).editor({
-    label: "Alt для social image",
-    description: "Описание общей OG-картинки для accessibility.",
-  }),
+  category: z.enum(["landing", "pricing", "legal"]).meta({ $content: { editor: { label: "Тип страницы" } } }),
+  socialImageAlt: z
+    .string()
+    .max(180)
+    .optional()
+    .meta({
+      $content: {
+        editor: {
+          label: "Alt для social image",
+          description: "Описание общей OG-картинки для accessibility.",
+        },
+      },
+    }),
   rawbody: z.string(),
 });
 
@@ -73,7 +110,7 @@ const marketingCopySchema = z.object({
   earlyAccess: z.string(),
   badge: z.string(),
   title: z.string(),
-  description: property(z.string()).editor({ input: "textarea" }),
+  description: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   composerPlaceholder: z.string(),
   composerSubmit: z.string(),
   composerAfterLogin: z.string(),
@@ -83,20 +120,20 @@ const marketingCopySchema = z.object({
   pillarsTitle: z.string(),
   pillarsDescription: z.string(),
   directTitle: z.string(),
-  directBody: property(z.string()).editor({ input: "textarea" }),
+  directBody: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   valueTitle: z.string(),
-  valueBody: property(z.string()).editor({ input: "textarea" }),
+  valueBody: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   accessTitle: z.string(),
-  accessBody: property(z.string()).editor({ input: "textarea" }),
+  accessBody: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   modelsTitle: z.string(),
-  modelsDescription: property(z.string()).editor({ input: "textarea" }),
+  modelsDescription: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   modelsColumnModel: z.string(),
   modelsColumnRate: z.string(),
-  modelsJailbreak: z.string(),
+  modelsUsageBased: z.string(),
   modelsWebSearch: z.string(),
   modelsEmpty: z.string(),
   apiTitle: z.string(),
-  apiDescription: property(z.string()).editor({ input: "textarea" }),
+  apiDescription: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   apiCta: z.string(),
   apiCopy: z.string(),
   apiCopied: z.string(),
@@ -115,7 +152,7 @@ const faqCopySchema = z.object({
     .array(
       z.object({
         question: z.string(),
-        answer: property(z.string()).editor({ input: "textarea" }),
+        answer: z.string().meta({ $content: { editor: { input: "textarea" } } }),
       }),
     )
     .min(1),
@@ -124,13 +161,11 @@ const faqCopySchema = z.object({
 const pricingCopySchema = z.object({
   badge: z.string(),
   heading: z.string(),
-  description: property(z.string()).editor({ input: "textarea" }),
+  description: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   perMonth: z.string(),
   customVolume: z.string(),
   official: z.string(),
   limitsRefresh: z.string(),
-  jailbreak: z.string(),
-  jailbreakPrevious: z.string(),
   webSearch: z.string(),
   topUpDiscount: z.string(),
   limits: z.string(),
@@ -142,12 +177,11 @@ const pricingCopySchema = z.object({
   featuresLabel: z.string(),
   plans: z.object({
     bachelor: z.object({ name: z.string(), description: z.string() }),
-    master: z.object({ name: z.string(), description: z.string() }),
     professor: z.object({ name: z.string(), description: z.string() }),
   }),
-  topUpDescription: property(z.string()).editor({ input: "textarea" }),
+  topUpDescription: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   empty: z.string(),
-  earlyAccessNote: property(z.string()).editor({ input: "textarea" }),
+  earlyAccessNote: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   calcTitle: z.string(),
   calcDescription: z.string(),
   calcAmount: z.string(),
@@ -156,24 +190,19 @@ const pricingCopySchema = z.object({
   calcMarkMultiplier: z.string(),
   calcMarkLabel: z.string(),
   calcSliderValue: z.string(),
-  calcStatEquivalent: z.string(),
-  calcStatEquivalentValue: z.string(),
-  calcStatSavings: z.string(),
-  calcStatSavingsValue: z.string(),
+  calcStatCredits: z.string(),
+  calcStatRate: z.string(),
+  calcStatRateValue: z.string(),
+  calcColumnCharge: z.string(),
+  calcTokenRate: z.string(),
+  calcUsageBased: z.string(),
   calcVip: z.string(),
-  calcVolumeLine: z.string(),
   calcCreditsLine: z.string(),
   calcNextTier: z.string(),
   calcTopLevel: z.string(),
-  calcCondition: property(z.string()).editor({ input: "textarea" }),
+  calcCondition: z.string().meta({ $content: { editor: { input: "textarea" } } }),
   calcColumnModel: z.string(),
-  calcColumnOfficial: z.string(),
-  calcColumnOurs: z.string(),
-  calcColumnVolume: z.string(),
-  calcDiscount: z.string(),
-  calcDiscountLabel: z.string(),
-  calcTokens: z.string(),
-  calcNote: property(z.string()).editor({ input: "textarea" }),
+  calcNote: z.string().meta({ $content: { editor: { input: "textarea" } } }),
 });
 
 const flatCopy = (keys: readonly string[]) => z.strictObject(Object.fromEntries(keys.map((key) => [key, z.string()])));
