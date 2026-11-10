@@ -91,7 +91,7 @@
     "limits": "Up to {n} request at once | Up to {n} requests at once",
     "recommended": "Recommended",
     "volume": "Volume",
-    "cta": "Create account",
+    "cta": "Purchase",
     "ctaCustom": "Talk to us",
     "byContract": "By agreement",
     "featuresLabel": "What {title} includes",
