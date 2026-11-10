@@ -2,6 +2,7 @@ import { parseMarkdown } from "@nuxtjs/mdc/runtime";
 import { parse } from "yaml";
 import { z } from "zod/v4";
 import { contentSchemas } from "../schemas/content.schema";
+import { copyParityViolations } from "./copy-parity";
 
 const files = [...new Set([
   ...new Bun.Glob("**/*.{md,json,yml}").scanSync({ cwd: "content", onlyFiles: true }),
@@ -33,7 +34,9 @@ for (const file of files) {
   }
   const parsed = file.endsWith(".md") ? await parseMarkdown(source) : null;
   const data = parsed ? { ...parsed.data, rawbody: source } : JSON.parse(source);
-  const schema = contentSchemas[section === "docs" ? "documentation" : section === "marketing" ? "marketing" : "site"];
+  const schema = contentSchemas[
+    section === "docs" ? "documentation" : section === "marketing" ? "marketing" : file.endsWith("developer.json") ? "developer" : "site"
+  ];
   const result = schema.safeParse(data);
   if (!result.success) throw new Error(`${file}: ${result.error.message}`);
   if (parsed && data.path) {
@@ -48,4 +51,13 @@ for (const file of files) {
 for (const [path, pair] of locales) {
   if (pair.size !== 2) throw new Error(`Missing RU/EN counterpart: ${path}`);
 }
+const enCopy = await Bun.file("content/site/en/copy.json").json();
+const ruCopy = await Bun.file("content/site/ru/copy.json").json();
+const enDeveloper = await Bun.file("content/site/en/developer.json").json();
+const ruDeveloper = await Bun.file("content/site/ru/developer.json").json();
+const copyViolations = [
+  ...copyParityViolations(enCopy, ruCopy),
+  ...copyParityViolations(enDeveloper, ruDeveloper).map((violation) => `developer.${violation}`),
+];
+if (copyViolations.length) throw new Error(`Public copy parity failed:\n- ${copyViolations.join("\n- ")}`);
 console.log(`Content validation passed: ${files.length} files, ${paths.size} explicit page paths, RU/EN parity.`);

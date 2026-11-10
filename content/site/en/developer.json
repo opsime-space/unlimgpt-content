@@ -1,0 +1,368 @@
+{
+  "labels": {
+    "prerequisites": "Prerequisites",
+    "setup": "Setup",
+    "verify": "Verify",
+    "rotate": "Rotate",
+    "revoke": "Revoke",
+    "revert": "Revert",
+    "troubleshooting": "Troubleshooting",
+    "uninstall": "Uninstall",
+    "matrixTitle": "Client compatibility",
+    "matrixDescription": "Current official AI client support matrix for the UnlimGPT CLI.",
+    "cliTitle": "UnlimGPT CLI commands",
+    "cliDescription": "Command reference for the published @unlimgpt/cli package.",
+    "cliInstallNotice": "Install the [published @unlimgpt/cli package](/docs/cli/install). Before using a command, check your installed version with `unlimgpt --version` and available commands with `unlimgpt --help`: this reference may describe a newer release.",
+    "client": "Client",
+    "support": "Mode",
+    "protocols": "Protocols",
+    "secret": "Secret delivery",
+    "problem": "Problem",
+    "resolution": "Resolution",
+    "supportModes": {
+      "automatic": "Automatic setup",
+      "guided": "Setup in the app",
+      "secure-launch": "Secure launch"
+    },
+    "secretModes": {
+      "auth-command": "Codex credential command",
+      "api-key-helper": "Claude Code key helper",
+      "environment": "Child process environment",
+      "manual-secret-store": "App credential store"
+    },
+    "diagnostic": "If the request fails, run `unlimgpt doctor --client {clientId}` and see [troubleshooting](/docs/troubleshooting/doctor). Diagnostics do not replace a real request.",
+    "verificationExample": "This launch check requires Python 3 and makes one billable request through the child process environment. If `gpt-5.6-sol` is unavailable to your key, use an accessible model ID from the catalog; the secret does not appear in command arguments.",
+    "noVerifiedOffering": "no verified offering"
+  },
+  "clients": {
+    "codex": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Setup signs you in and creates an API key if needed; the secret stays in the operating-system credential store."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, then create and select a new key with `unlimgpt keys create --name codex-next`.",
+        "Send a request in Codex and confirm it in [API Activity](/api-activity); restart Codex if needed. Revoke the old key only after a successful request."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "Run the exact command printed after `Undo:` by `configure`. The CLI leaves later third-party edits intact."
+      ],
+      "title": "Codex CLI",
+      "summary": "Automatic Codex CLI 0.156.1 setup for GPT-6 Sol.",
+      "setup": [
+        "Configure Codex CLI 0.156.1 with `gpt-6-sol`. This command does not yet support other models.",
+        "Preview the fields that would change, without writing: `unlimgpt configure codex --dry-run`.",
+        "Quit Codex Desktop. If previous sessions exist, after writing `config.toml` the CLI creates a backup of Codex session stores in its `backups` directory; it includes chat content. Keep it private.",
+        "Apply the owned block: `unlimgpt configure codex`.",
+        "The CLI adds the `unlimgpt` provider; the secret stays in the OS credential store and is returned through `auth.command`."
+      ],
+      "verify": [
+        "Reopen Codex Desktop and confirm your previous chats are still visible.",
+        "Start a new Codex chat, send “Reply with READY”, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "Codex does not support `auth.command`.",
+          "resolution": "Upgrade to a Codex release with native provider auth commands; plaintext fallback is intentionally unavailable."
+        },
+        {
+          "problem": "Another provider is active.",
+          "resolution": "Inspect the effective user-level `$CODEX_HOME/config.toml`, then rerun `unlimgpt configure codex`."
+        }
+      ],
+      "uninstall": [
+        "Run the guarded receipt revert, then revoke the dedicated Codex key if no other client uses it."
+      ]
+    },
+    "claude-code": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Setup signs you in and creates an API key if needed; the secret stays in the operating-system credential store."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, then create and select a new key with `unlimgpt keys create --name claude-code-next`.",
+        "Send a request in Claude Code and confirm it in [API Activity](/api-activity); restart Claude Code if needed. Revoke the old key only after a successful request."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "Run the exact command printed after `Undo:` by `configure`. The CLI leaves later third-party edits intact."
+      ],
+      "title": "Claude Code",
+      "summary": "Automatic setup through the official `apiKeyHelper` and `ANTHROPIC_BASE_URL` surfaces.",
+      "setup": [
+        "Review precedence and the fields that would change: `unlimgpt configure claude-code --dry-run`.",
+        "Apply the configuration: `unlimgpt configure claude-code`.",
+        "The CLI never writes the key to JSON; Claude Code obtains it through `apiKeyHelper`."
+      ],
+      "verify": [
+        "Open Claude Code, send “Reply with READY”, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "The helper is not called.",
+          "resolution": "Remove a higher-precedence `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`, then rerun doctor."
+        },
+        {
+          "problem": "Managed settings prevent changes.",
+          "resolution": "Contact your administrator; the CLI does not bypass managed policy."
+        }
+      ],
+      "uninstall": [
+        "Run the guarded receipt revert, then revoke the dedicated Claude Code key."
+      ]
+    },
+    "continue": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Setup signs you in and creates an API key if needed; the secret stays in the operating-system credential store."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, then create a new key with `unlimgpt keys create --name rotated-client`.",
+        "Relaunch the client through UnlimGPT, send a request, and confirm it in [API Activity](/api-activity). Revoke the old key only afterward."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "Run the exact command printed after `Undo:` by `configure`. The CLI leaves later third-party edits intact."
+      ],
+      "title": "Continue CLI",
+      "summary": "Secret-free model configuration plus ephemeral environment injection through the secure launcher.",
+      "setup": [
+        "Preview the YAML fields that would change: `unlimgpt configure continue --dry-run`.",
+        "Apply it: `unlimgpt configure continue`.",
+        "Start the CLI with `unlimgpt launch continue -- cn --config ~/.continue/config.yaml`; configure the IDE extension separately through its native secret UI."
+      ],
+      "verify": [
+        "Run `unlimgpt launch continue -- cn --config ~/.continue/config.yaml`. If you configured `--profile work`, use `unlimgpt launch continue --profile work -- cn --config ~/.continue/config.yaml` with your actual profile name. The `--config` flag opens the local YAML even when a different config was previously selected. In Continue CLI, use `/model` to select the UnlimGPT model, send “Reply with READY”, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "The YAML uses anchors or directives.",
+          "resolution": "The CLI stops before writing; use guided setup so YAML semantics are preserved."
+        },
+        {
+          "problem": "The IDE cannot read the shell variable.",
+          "resolution": "That is expected for the extension: use Continue's native UI/Hub instead of a plaintext `.env`."
+        }
+      ],
+      "uninstall": [
+        "Run the guarded revert and remove the native Continue secret if you created one for the IDE."
+      ]
+    },
+    "cursor": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Install Cursor and confirm it offers an OpenAI-compatible endpoint and API key field."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, create a new key with `unlimgpt keys create --name cursor-next`, then rerun `unlimgpt configure cursor` to copy the new key.",
+        "Paste it into Cursor's native secret field. Send a real request in Cursor and confirm it in [API Activity](/api-activity); only then revoke the old key on the API keys page."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "The CLI did not modify Cursor; remove the key and model through its UI."
+      ],
+      "title": "Cursor",
+      "summary": "Guided setup through Cursor's documented UI; the extension's internal secret storage is never modified.",
+      "setup": [
+        "Run `unlimgpt configure cursor` and open Settings → Models → API Keys.",
+        "Test Cursor Local IDE in Ask first: Agent with a custom OpenAI endpoint is not guaranteed; Cloud Agents do not use BYOK keys.",
+        "Enable Use OpenAI API Key and Override OpenAI Base URL; enter the exact model ID without a prefix.",
+        "To choose effort from Cursor's model picker, append `-effort-low` and `-effort-high` to the model ID shown by the CLI through Add Custom Model. For example: `gpt-6-sol-effort-low` and `gpt-6-sol-effort-high`.",
+        "Cursor's separate Reasoning control may omit reasoning_effort on a custom Base URL; choose the corresponding model entry.",
+        "Copy the displayed Base URL and model ID. The CLI temporarily copies the API key to the clipboard.",
+        "Paste the API key from the clipboard only into Cursor's native secret field; the CLI never reads SQLite or VS Code SecretStorage."
+      ],
+      "verify": [
+        "Open Cursor, send “Reply with READY” through the configured model, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "There is no custom endpoint field.",
+          "resolution": "Upgrade Cursor and select its official OpenAI-compatible provider; the CLI does not automate hidden internal formats."
+        },
+        {
+          "problem": "Requests fail after setup.",
+          "resolution": "Verify the selected provider, Base URL, and model id, then run doctor."
+        }
+      ],
+      "uninstall": [
+        "Remove the UnlimGPT profile and secret through Cursor's UI, then revoke the dedicated API key."
+      ]
+    },
+    "cline": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Install Cline and confirm it offers an OpenAI-compatible endpoint and API key field."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, create a new key with `unlimgpt keys create --name cline-next`, then rerun `unlimgpt configure cline` to copy the new key.",
+        "Paste it into Cline's native secret field. Send a real request in Cline and confirm it in [API Activity](/api-activity); only then revoke the old key on the API keys page."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "The CLI did not modify Cline; remove the key and model through its UI."
+      ],
+      "title": "Cline",
+      "summary": "Guided setup through Cline's documented UI; the extension's internal secret storage is never modified.",
+      "setup": [
+        "Run `unlimgpt configure cline` and open Cline Settings → API Provider → OpenAI Compatible.",
+        "Copy the displayed Base URL and model ID. The CLI temporarily copies the API key to the clipboard.",
+        "Paste the API key from the clipboard only into Cline's native secret field; the CLI never reads SQLite or VS Code SecretStorage."
+      ],
+      "verify": [
+        "Open Cline, send “Reply with READY” through the configured model, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "There is no custom endpoint field.",
+          "resolution": "Upgrade Cline and select its official OpenAI-compatible provider; the CLI does not automate hidden internal formats."
+        },
+        {
+          "problem": "Requests fail after setup.",
+          "resolution": "Verify the selected provider, Base URL, and model id, then run doctor."
+        }
+      ],
+      "uninstall": [
+        "Remove the UnlimGPT profile and secret through Cline's UI, then revoke the dedicated API key."
+      ]
+    },
+    "roo": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Install Roo Code and confirm it offers an OpenAI-compatible endpoint and API key field."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, create a new key with `unlimgpt keys create --name roo-next`, then rerun `unlimgpt configure roo` to copy the new key.",
+        "Paste it into Roo Code's native secret field. Send a real request in Roo Code and confirm it in [API Activity](/api-activity); only then revoke the old key on the API keys page."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "The CLI did not modify Roo Code; remove the key and model through its UI."
+      ],
+      "title": "Roo Code",
+      "summary": "Guided setup through Roo Code's documented UI; the extension's internal secret storage is never modified.",
+      "setup": [
+        "Run `unlimgpt configure roo` and open Roo Code → API configuration profiles → OpenAI Compatible.",
+        "Copy the displayed Base URL and model ID. The CLI temporarily copies the API key to the clipboard.",
+        "Paste the API key from the clipboard only into Roo Code's native secret field; the CLI never reads SQLite or VS Code SecretStorage."
+      ],
+      "verify": [
+        "Open Roo Code, send “Reply with READY” through the configured model, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "There is no custom endpoint field.",
+          "resolution": "Upgrade Roo Code and select its official OpenAI-compatible provider; the CLI does not automate hidden internal formats."
+        },
+        {
+          "problem": "Requests fail after setup.",
+          "resolution": "Verify the selected provider, Base URL, and model id, then run doctor."
+        }
+      ],
+      "uninstall": [
+        "Remove the UnlimGPT profile and secret through Roo Code's UI, then revoke the dedicated API key."
+      ]
+    },
+    "generic-openai": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Setup signs you in and creates an API key if needed; the secret stays in the operating-system credential store."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, then create a new key with `unlimgpt keys create --name rotated-client`.",
+        "Relaunch the client through UnlimGPT, send a request, and confirm it in [API Activity](/api-activity). Revoke the old key only afterward."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "No client files were changed: stop using the UnlimGPT launcher and revoke the key on the API keys page if it is no longer needed."
+      ],
+      "title": "OpenAI-compatible client",
+      "summary": "Securely launch an arbitrary OpenAI-compatible client without writing a secret to config or shell history.",
+      "setup": [
+        "Run `unlimgpt configure generic-openai` to prepare the profile and key.",
+        "Start your chosen program through `unlimgpt launch openai`: after `--`, supply its installed executable name and normal arguments. Only the child process receives the Base URL and key.",
+        "If you configured a separate profile such as `work`, add `--profile work` before `--` when launching; this uses that profile's key without changing the active profile."
+      ],
+      "verify": [
+        "Send “Reply with READY” in the launched OpenAI-compatible client, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits.",
+        "If you configured `--profile work`, add the same flag before `--` in the runnable example below, using your actual profile name; otherwise it uses the active profile's key."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "The client ignores standard variables.",
+          "resolution": "Use its documented custom endpoint/secret UI or a dedicated guided adapter."
+        }
+      ],
+      "uninstall": [
+        "Stop using the launcher and revoke the dedicated key; no configuration file was created."
+      ]
+    },
+    "generic-anthropic": {
+      "prerequisites": [
+        "Install the [published `@unlimgpt/cli` package](/docs/cli/install).",
+        "Setup signs you in and creates an API key if needed; the secret stays in the operating-system credential store."
+      ],
+      "rotate": [
+        "Record the old key ID from `unlimgpt keys list`, then create a new key with `unlimgpt keys create --name rotated-client`.",
+        "Relaunch the client through UnlimGPT, send a request, and confirm it in [API Activity](/api-activity). Revoke the old key only afterward."
+      ],
+      "revoke": [
+        "Revoke a key on the [API keys page](/api-keys) after confirming the new connection; the old key immediately loses access."
+      ],
+      "revert": [
+        "No client files were changed: stop using the UnlimGPT launcher and revoke the key on the API keys page if it is no longer needed."
+      ],
+      "title": "Anthropic-compatible client",
+      "summary": "Securely launch an arbitrary Anthropic-compatible client with ephemeral credential environment variables.",
+      "setup": [
+        "Run `unlimgpt configure generic-anthropic` to prepare the profile and key.",
+        "Start your chosen program through `unlimgpt launch anthropic`: after `--`, supply its installed executable name and normal arguments. The key is never written to a shell profile.",
+        "If you configured a separate profile such as `work`, add `--profile work` before `--` when launching; this uses that profile's key without changing the active profile."
+      ],
+      "verify": [
+        "Send “Reply with READY” in the launched Anthropic-compatible client, wait for a non-empty response, and confirm the request in [API Activity](/api-activity). The wording may vary; the request uses credits.",
+        "If you configured `--profile work`, add the same flag before `--` in the runnable example below, using your actual profile name; otherwise it uses the active profile's key."
+      ],
+      "troubleshooting": [
+        {
+          "problem": "The client uses custom variable names.",
+          "resolution": "Use its documented endpoint/secret mechanism; never move the key into argv."
+        }
+      ],
+      "uninstall": [
+        "Stop using the launcher and revoke the dedicated key; no configuration file was created."
+      ]
+    }
+  },
+  "commands": {
+    "login": "Sign in by approving a device code in your browser.",
+    "logout": "Revoke the CLI OAuth session and remove its local refresh token.",
+    "whoami": "Inspect the current user and organization.",
+    "models": "List every available model and its capabilities.",
+    "organizations": "List your organizations or select an organization for the current profile.",
+    "keys": "Manage API keys for the current organization. `keys permissions <key-id> --scope models:read --scope inference:write` replaces the permission set; `--clear` removes both permissions and `--json` returns safe metadata. `keys spend-limit <key-id> --micro-credits <amount>` sets the total key budget: 0 denies new spending and `--clear` removes the cap without resetting spent credits.",
+    "configure": "Configure a client or show manual steps; `cloud` and `claude` alias `claude-code`.",
+    "revert": "Revert an owned change when the file has not changed since setup.",
+    "doctor": "Run free diagnostics; the paid probe requires explicit opt-in.",
+    "update": "Show the published version. With --yes, npm installs that exact release and leaves profiles, sign-in and API keys in place.",
+    "credential": "Return a key only to a native credential helper through stdout.",
+    "launch": "Launch a child process with an ephemeral secret environment; `--profile` selects a saved profile without changing the active one.",
+    "clients": "Show the current client support matrix.",
+    "completion": "Generate shell completion."
+  }
+}

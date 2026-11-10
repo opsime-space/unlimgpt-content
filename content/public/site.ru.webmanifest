@@ -1,0 +1,17 @@
+{
+  "name": "UnlimGPT",
+  "short_name": "UnlimGPT",
+  "description": "GPT & Claude без отказов. До 10× дешевле официальных цен.",
+  "lang": "ru",
+  "id": "/ru",
+  "start_url": "/ru",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#171717",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
