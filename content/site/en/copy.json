@@ -98,7 +98,7 @@
     "byContract": "By agreement",
     "featuresLabel": "What {title} includes",
     "plans": {
-      "bachelor": { "name": "Bachelor", "description": "For everyday work in chat and over the API." },
+      "bachelor": { "name": "Bachelor", "description": "For everyday work in chat and over the API.", "cta": "Purchase" },
       "master": { "name": "Master", "description": "Five or twenty times the monthly credits, with the top-up discount from the first dollar." },
       "professor": { "name": "Professor", "description": "Custom volume, limits and terms for your team." }
     },
